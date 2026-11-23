@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Fork OMP conversations into Rex panes and tabs",
+  "license": "MIT",
   "omp": {
     "extensions": ["./index.ts"]
   },

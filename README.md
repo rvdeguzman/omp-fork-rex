@@ -16,11 +16,13 @@ Bare `/fork` remains OMP's native in-place fork. Outside Rex, `/fork` placement 
 
 Requires OMP 19.1.1 or a compatible extension API, plus the Rex CLI on `PATH`. Run OMP inside Rex so `REX_SESSION` and `REX_BLOCK` identify its session and terminal.
 
+Clone this repository (or download and extract its source), then run from the checkout root:
+
 ```sh
-omp plugin link --scope user /Users/rv/repos/omp-rex
+omp plugin link --scope user "$(pwd)"
 ```
 
-For another checkout, pass that checkout's absolute path. No dependencies or build step are required. Restart OMP to load a newly installed plugin.
+No dependencies or build step are required. Keep the checkout in place: linking loads the plugin from that directory. Restart OMP to load a newly installed plugin.
 
 ## Behavior and safety
 
@@ -36,8 +38,14 @@ For another checkout, pass that checkout's absolute path. No dependencies or bui
 
 ## Verification
 
+Use Bun 1.4.2 to run the tests; GitHub Actions runs the same command on pushes and pull requests.
+
 ```sh
 bun test
 ```
 
 Six tests cover prompt/selector removal, credential flags, literal argument preservation, registered extension flag types, end-of-options handling, and unsupported flags. Also verified in actual Rex terminals with OMP 19.1.1: pane, tab, and window placements; separate child identities; copied conversation markers; matching model/thinking/cwd/cache identity; and unchanged native bare `/fork` behavior. No model requests were needed for that smoke scenario.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
